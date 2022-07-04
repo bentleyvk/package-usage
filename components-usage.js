@@ -3,7 +3,9 @@ import fs from "fs";
 
 const companyName = process.argv[2];
 const packageName = process.argv[3];
-const token = process.argv[4];
+const azureToken = process.argv[4];
+
+const token = `Basic ${Buffer.from(`:${azureToken}`).toString('base64')}`;
 
 const SEARCH_API_URL =
   `https://almsearch.dev.azure.com/${companyName}/_apis/search/codeQueryResults?api-version=6.0-preview.1`;
